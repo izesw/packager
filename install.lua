@@ -221,9 +221,9 @@ local ParseUtils = {}
 do
 	local EMPTY_ITERATOR = coroutine.wrap(function() end)
 	local CONTENTS_PATTERN = String.patternFromExample([[<span class="css-truncate css-truncate-target d-block width-fit"><a class="js-navigation-open Link--primary" title="Server" data-pjax="#repo-content-pjax-container" href="/Quenty/NevermoreEngine/tree/version2/Modules/Server">Server</a></span>]], {
-		["\"Server\""] = "\"([^\"]+)\"",
-		[">Server<"] = ">[^<]+<",
-		["\"/izesw/packager/tree/main/index\""] = "\"[^\"]+\"",
+		["\"Shared\""] = "\"([^\"]+)\"",
+		[">Shared<"] = ">[^<]+<",
+		["\"/izesw/packager/tree/main/index/Shared\""] = "\"[^\"]+\"",
 		[" "] = "%s+"
 	})
 
@@ -357,16 +357,6 @@ do
 	ParseUtils.fillFoldersAsync(url, entry)
 	ParseUtils.fillScriptSourcesAsync(ParseUtils.githubContentFromUrl(url), entry)
 	EntryUtils.mount(ReplicatedStorage, entry)
-end
-
--- Mount libraries
-do
-	local url = "https://github.com/izesw/packager/tree/main/index_server/Server"
-	local entry = EntryUtils.create("Folder", "Server_Packages", "")
-
-	ParseUtils.fillFoldersAsync(url, entry)
-	ParseUtils.fillScriptSourcesAsync(ParseUtils.githubContentFromUrl(url), entry)
-	EntryUtils.mount(ServerScriptService, entry)
 end
 
 print("Done installing Astro")
