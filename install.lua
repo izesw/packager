@@ -353,10 +353,12 @@ local ServerScriptService = game:GetService("ServerScriptService")
 -- Mount loader
 do
 	local url = "https://github.com/izesw/packager/tree/main/index"
-	local entry = EntryUtils.create("Folder", "Packages", "")
+	local entry = EntryUtils.create("Folder", "Core", "")
+	local fullEntry = EntryUtils.create("Folder", "Packages", "", { entry })
+
 	ParseUtils.fillFoldersAsync(url, entry)
 	ParseUtils.fillScriptSourcesAsync(ParseUtils.githubContentFromUrl(url), entry)
-	EntryUtils.mount(ReplicatedStorage, entry)
+	EntryUtils.mount(ReplicatedStorage, fullEntry)
 end
 
 -- Mount libraries
