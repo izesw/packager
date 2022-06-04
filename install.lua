@@ -1,18 +1,10 @@
--- Nevermore installer script
---
--- Reads Github html and then reifies the structure into Roblox instances.
--- Makes assumptions based upon the name of the files as-to what type it is.
--- Generally follows the rojo standard format for client/server.
---
--- @script Install.lua
--- @author Quenty
-
--- luacheck: no max line length
-
 local HttpService = game:GetService("HttpService")
 
 local Table = {}
 do
+
+    print("Using Nevermore Installer")
+
 	local function errorOnIndex(self, index)
 		error(("Bad index %q"):format(tostring(index)), 2)
 	end
@@ -231,7 +223,7 @@ do
 	local CONTENTS_PATTERN = String.patternFromExample([[<span class="css-truncate css-truncate-target d-block width-fit"><a class="js-navigation-open Link--primary" title="Server" data-pjax="#repo-content-pjax-container" href="/Quenty/NevermoreEngine/tree/version2/Modules/Server">Server</a></span>]], {
 		["\"Server\""] = "\"([^\"]+)\"",
 		[">Server<"] = ">[^<]+<",
-		["\"/Quenty/NevermoreEngine/tree/version2/Modules/Server\""] = "\"[^\"]+\"",
+		["\"/izesw/packager/tree/main/index\""] = "\"[^\"]+\"",
 		[" "] = "%s+"
 	})
 
@@ -360,7 +352,7 @@ local ServerScriptService = game:GetService("ServerScriptService")
 
 -- Mount loader
 do
-	local url = "https://github.com/Quenty/NevermoreEngine/tree/version2/loader/ReplicatedStorage/Nevermore"
+	local url = "https://github.com/izesw/packager/tree/main/index"
 	local entry = EntryUtils.create("Folder", "Astro", "")
 	ParseUtils.fillFoldersAsync(url, entry)
 	ParseUtils.fillScriptSourcesAsync(ParseUtils.githubContentFromUrl(url), entry)
@@ -368,7 +360,7 @@ do
 end
 
 -- Mount libraries
-do
+--[[do
 	local url = "https://github.com/Quenty/NevermoreEngine/tree/version2/Modules"
 	local entry = EntryUtils.create("Folder", "Core", "")
 	local fullEntry = EntryUtils.create("Folder", "Astro", "", { entry })
@@ -376,6 +368,6 @@ do
 	ParseUtils.fillFoldersAsync(url, entry)
 	ParseUtils.fillScriptSourcesAsync(ParseUtils.githubContentFromUrl(url), entry)
 	EntryUtils.mount(ServerScriptService, fullEntry)
-end
+end]]
 
-print("Done installing Nevermore")
+print("Done installing Astro")
