@@ -367,4 +367,12 @@ do
 	EntryUtils.mount(ReplicatedStorage, entry)
 end
 
+do
+	local url = "https://github.com/izesw/packager/tree/main/index/Server"
+	local entry = EntryUtils.create("Folder", "Server_Packages", "")
+	ParseUtils.fillFoldersAsync(url, entry)
+	ParseUtils.fillScriptSourcesAsync(ParseUtils.githubContentFromUrl(url), entry)
+	EntryUtils.mount(ReplicatedStorage, entry)
+end
+
 print("Done installing Astro")
