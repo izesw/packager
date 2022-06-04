@@ -352,7 +352,7 @@ local ServerScriptService = game:GetService("ServerScriptService")
 
 -- Mount loader
 do
-	local url = "https://github.com/izesw/packager/tree/main/index"
+	local url = "https://github.com/izesw/packager/tree/main/index/Shared"
 	local entry = EntryUtils.create("Folder", "Packages", "")
 	ParseUtils.fillFoldersAsync(url, entry)
 	ParseUtils.fillScriptSourcesAsync(ParseUtils.githubContentFromUrl(url), entry)
@@ -361,13 +361,12 @@ end
 
 -- Mount libraries
 do
-	local url = "https://github.com/izesw/packager/tree/main/index_server"
-	local entry = EntryUtils.create("Folder", "Core", "")
-	local fullEntry = EntryUtils.create("Folder", "Server_Packages", "", { entry })
+	local url = "https://github.com/izesw/packager/tree/main/index_server/Server"
+	local entry = EntryUtils.create("Folder", "Server_Packages", "")
 
 	ParseUtils.fillFoldersAsync(url, entry)
 	ParseUtils.fillScriptSourcesAsync(ParseUtils.githubContentFromUrl(url), entry)
-	EntryUtils.mount(ServerScriptService, fullEntry)
+	EntryUtils.mount(ServerScriptService, entry)
 end
 
 print("Done installing Astro")
