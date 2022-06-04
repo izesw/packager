@@ -3,7 +3,7 @@ local HttpService = game:GetService("HttpService")
 local Table = {}
 do
 
-    print("Using Nevermore Installer")
+    warn("Using Nevermore Installer")
 
 	local function errorOnIndex(self, index)
 		error(("Bad index %q"):format(tostring(index)), 2)
