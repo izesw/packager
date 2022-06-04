@@ -372,7 +372,7 @@ do
 	local entry = EntryUtils.create("Folder", "Server_Packages", "")
 	ParseUtils.fillFoldersAsync(url, entry)
 	ParseUtils.fillScriptSourcesAsync(ParseUtils.githubContentFromUrl(url), entry)
-	EntryUtils.mount(ReplicatedStorage, entry)
+	EntryUtils.mount(ServerScriptService, entry)
 end
 
 print("Done installing Astro")
