@@ -352,7 +352,7 @@ local ServerScriptService = game:GetService("ServerScriptService")
 
 -- Mount loader
 do
-	local url = "https://github.com/izesw/packager/tree/main/index"
+	local url = "https://github.com/izesw/packager/tree/main/index/Server"
 	local entry = EntryUtils.create("Folder", "Astro", "")
 	ParseUtils.fillFoldersAsync(url, entry)
 	ParseUtils.fillScriptSourcesAsync(ParseUtils.githubContentFromUrl(url), entry)
@@ -360,14 +360,14 @@ do
 end
 
 -- Mount libraries
---[[do
-	local url = "https://github.com/Quenty/NevermoreEngine/tree/version2/Modules"
+do
+	local url = "https://github.com/izesw/packager/tree/main/index/Shared"
 	local entry = EntryUtils.create("Folder", "Core", "")
 	local fullEntry = EntryUtils.create("Folder", "Astro", "", { entry })
 
 	ParseUtils.fillFoldersAsync(url, entry)
 	ParseUtils.fillScriptSourcesAsync(ParseUtils.githubContentFromUrl(url), entry)
 	EntryUtils.mount(ServerScriptService, fullEntry)
-end]]
+end
 
 print("Done installing Astro")
