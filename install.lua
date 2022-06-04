@@ -1,10 +1,18 @@
+-- Nevermore installer script
+--
+-- Reads Github html and then reifies the structure into Roblox instances.
+-- Makes assumptions based upon the name of the files as-to what type it is.
+-- Generally follows the rojo standard format for client/server.
+--
+-- @script Install.lua
+-- @author Quenty
+
+-- luacheck: no max line length
+
 local HttpService = game:GetService("HttpService")
 
 local Table = {}
 do
-
-    warn("Using Nevermore Installer")
-
 	local function errorOnIndex(self, index)
 		error(("Bad index %q"):format(tostring(index)), 2)
 	end
@@ -221,9 +229,9 @@ local ParseUtils = {}
 do
 	local EMPTY_ITERATOR = coroutine.wrap(function() end)
 	local CONTENTS_PATTERN = String.patternFromExample([[<span class="css-truncate css-truncate-target d-block width-fit"><a class="js-navigation-open Link--primary" title="Server" data-pjax="#repo-content-pjax-container" href="/Quenty/NevermoreEngine/tree/version2/Modules/Server">Server</a></span>]], {
-		["\"Shared\""] = "\"([^\"]+)\"",
-		[">Shared<"] = ">[^<]+<",
-		["\"/izesw/packager/tree/main/index/Shared\""] = "\"[^\"]+\"",
+		["\"Server\""] = "\"([^\"]+)\"",
+		[">Server<"] = ">[^<]+<",
+		["\"/Quenty/NevermoreEngine/tree/version2/Modules/Server\""] = "\"[^\"]+\"",
 		[" "] = "%s+"
 	})
 
