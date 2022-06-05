@@ -262,7 +262,7 @@ do
 			local name = EntryUtils.getNameFromClass(fileName, className)
 			local path = basePath .. "/" .. fileName
 
-			local newName = string.split(basePath, "/")
+			local newName = string.split(url, "/")
 
 			for index, n in pairs(newName) do
 				if _G.Packages.Server[n] or _G.Packages.Shared[n] then
