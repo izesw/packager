@@ -261,7 +261,9 @@ do
 			local className = EntryUtils.classifyByName(fileName)
 			local name = EntryUtils.getNameFromClass(fileName, className)
 			local path = basePath .. "/" .. fileName
-			table.insert(entries, EntryUtils.create(className, name, path))
+			if _G.Packages.Server[name] or _G.Packages.Shared[name] then
+				table.insert(entries, EntryUtils.create(className, name, path))
+			end
 		end
 
 		return entries
