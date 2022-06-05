@@ -261,8 +261,14 @@ do
 			local className = EntryUtils.classifyByName(fileName)
 			local name = EntryUtils.getNameFromClass(fileName, className)
 			local path = basePath .. "/" .. fileName
-			if _G.Packages.Server[name] or _G.Packages.Shared[name] then
-				table.insert(entries, EntryUtils.create(className, name, path))
+
+			local newName = string.split(basePath, "/")
+
+			for index, n in pairs(newName) do
+				if _G.Packages.Server[n] or _G.Packages.Shared[n] then
+					table.insert(entries, EntryUtils.create(className, name, path))
+					break
+				end
 			end
 		end
 
