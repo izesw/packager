@@ -266,6 +266,7 @@ do
 
 			for index, n in pairs(newName) do
 				if _G.Packages.Server[n] or _G.Packages.Shared[n] then
+					print(n)
 					table.insert(entries, EntryUtils.create(className, name, path))
 					break
 				end
