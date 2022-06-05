@@ -383,5 +383,5 @@ do
 	ParseUtils.fillScriptSourcesAsync(ParseUtils.githubContentFromUrl(url), entry)
 	EntryUtils.mount(ServerScriptService, entry)
 end
-
+print("V0.0.1")
 print("Done installing Astro")
