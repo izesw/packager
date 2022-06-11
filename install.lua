@@ -264,11 +264,15 @@ do
 
 			local newName = string.split(url, "/")
 
-			for index, n in pairs(newName) do
-				if _G.Packages.Server[n] or _G.Packages.Shared[n] then
-					print(n)
+			local function isAble(num, src)
+				if (num == #newName and src == "Server") or (num == #newName and src == "Shared") then
+					return true
+				end
+			end
+
+			for n, src in pairs(newName) do
+				if _G.Packages.Server[src] or _G.Packages.Shared[src] or isAble(n, src) then
 					table.insert(entries, EntryUtils.create(className, name, path))
-					break
 				end
 			end
 		end
