@@ -270,8 +270,14 @@ do
 				end
 			end
 
+			local function isAble_2(num, src)
+				if _G.Packages.Server[src] or _G.Packages.Shared[src] or _G.Packages.Server[src..".Package"] or _G.Packages.Shared[src..".Package"] then
+					return true
+				end
+			end
+
 			for n, src in pairs(newName) do
-				if _G.Packages.Server[src] or _G.Packages.Shared[src] or isAble(n, src) then
+				if isAble_2(n, src) or isAble(n, src) then
 					table.insert(entries, EntryUtils.create(className, name, path))
 					break
 				end
