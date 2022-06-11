@@ -264,6 +264,8 @@ do
 
 			local newName = string.split(url, "/")
 
+			print(#newName)
+
 			local function isAble(num, src)
 				if (num == #newName and src == "Server") or (num == #newName and src == "Shared") then
 					print(num)
