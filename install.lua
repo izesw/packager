@@ -265,7 +265,7 @@ do
 			local newName = string.split(url, "/")
 
 			local function isAble(num, src)
-				if (num == #newName and src == "Server") or (num == #newName and src == "Shared") then
+				if (fileName == "Server") or (fileName == "Shared") then
 					return true
 				end
 			end
