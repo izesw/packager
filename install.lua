@@ -228,11 +228,27 @@ end
 local ParseUtils = {}
 do
 	local EMPTY_ITERATOR = coroutine.wrap(function() end)
+	local CONTENTS_PATTERN = String.patternFromExample([[<span class="css-truncate css-truncate-target d-block width-fit"><a class="js-navigation-open Link--primary" title="Server" data-pjax="#repo-content-pjax-container" href="/izesw/packager/tree/main/index">index</a></span>]], {
+		["\"index\""] = "\"([^\"]+)\"",
+		[">index<"] = ">[^<]+<",
+		["\"/izesw/packager/tree/main/index\""] = "\"[^\"]+\"",
+		[" "] = "%s+"
+	})
+
+	function ParseUtils.parseContents(body, pattern)
+		assert(pattern)
+
+		if not body then
+			return EMPTY_ITERATOR
+		end
+
+		return body:gmatch(pattern)
+	end
 
 	function ParseUtils.readContentsAsync(url)
 		local body = Http.getAsync(url)
 
-		return body:split("/")
+		return ParseUtils.parseContents(body, CONTENTS_PATTERN)
 	end
 
 	function ParseUtils.readEntriesAsync(url, basePath)
