@@ -246,6 +246,7 @@ do
 			local name = EntryUtils.getNameFromClass(fileName, className)
 			local path = basePath .. "/" .. fileName
 
+			local newName = string.split(url, "/")
 
 			local function isAble_2(src)
 				if _G.Packages.Server[src] or _G.Packages.Shared[src] then
@@ -253,11 +254,11 @@ do
 				end
 			end
 
-			if (fileName == "Server_Packages") or (fileName == "Shared") then
-				print(fileName, url)
+			if (newName[#newName] == "Server_Packages") or (newName[#newName] == "Shared") then
+				print(newName, url)
 				table.insert(entries, EntryUtils.create(className, name, path))
 			else
-				for _, src in pairs(fileName) do
+				for _, src in pairs(newName) do
 					if isAble_2(src) then
 						print(url)
 						table.insert(entries, EntryUtils.create(className, name, path))
