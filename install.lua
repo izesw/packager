@@ -231,7 +231,6 @@ do
 	local CONTENTS_PATTERN = String.patternFromExample([[<span class="css-truncate css-truncate-target d-block width-fit"><a class="js-navigation-open Link--primary" title="Server" data-pjax="#repo-content-pjax-container" href="/Quenty/NevermoreEngine/tree/version2/Modules/Server">Server</a></span>]], {
 		["\"Server\""] = "\"([^\"]+)\"",
 		[">Server<"] = ">[^<]+<",
-		["\"/Quenty/NevermoreEngine/tree/version2/Modules/Server\""] = "\"[^\"]+\"",
 		[" "] = "%s+"
 	})
 
@@ -395,5 +394,6 @@ do
 	ParseUtils.fillScriptSourcesAsync(ParseUtils.githubContentFromUrl(url), entry)
 	EntryUtils.mount(ServerScriptService, entry)
 end
+
 print("V0.0.1")
 print("Done installing Astro")
