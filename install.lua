@@ -231,6 +231,7 @@ do
 	local CONTENTS_PATTERN = String.patternFromExample([[<span class="css-truncate css-truncate-target d-block width-fit"><a class="js-navigation-open Link--primary" title="Server" data-pjax="#repo-content-pjax-container" href="/Quenty/NevermoreEngine/tree/version2/Modules/Server">Server</a></span>]], {
 		["\"Server\""] = "\"([^\"]+)\"",
 		[">Server<"] = ">[^<]+<",
+		["\"/Quenty/NevermoreEngine/tree/version2/Modules/Server\""] = "\"[^\"]+\"",
 		[" "] = "%s+"
 	})
 
@@ -263,7 +264,7 @@ do
 
 			local newName = string.split(url, "/")
 
-			local function isAble_2(num, src)
+			local function isAble_2(src)
 				if _G.Packages.Server[src] or _G.Packages.Shared[src] then
 					return true
 				end
@@ -272,15 +273,14 @@ do
 			if (newName[#newName] == "Server") or (newName[#newName] == "Shared") then
 				table.insert(entries, EntryUtils.create(className, name, path))
 			else
-				for n, src in pairs(newName) do
-					if isAble_2(n, src) then
+				for _, src in pairs(newName) do
+					if isAble_2(src) then
 						table.insert(entries, EntryUtils.create(className, name, path))
 						break
 					end
 				end
 			end
 
-			
 		end
 
 		return entries
@@ -394,5 +394,5 @@ do
 	EntryUtils.mount(ServerScriptService, entry)
 end
 
-print("V0.0.1b")
+print("V0.0.1c")
 print("Done installing Astro")
