@@ -228,27 +228,11 @@ end
 local ParseUtils = {}
 do
 	local EMPTY_ITERATOR = coroutine.wrap(function() end)
-	local CONTENTS_PATTERN = String.patternFromExample([[<span class="css-truncate css-truncate-target d-block width-fit"><a class="js-navigation-open Link--primary" title="Server" data-pjax="#repo-content-pjax-container" href="/Quenty/NevermoreEngine/tree/version2/Modules/Server">Server</a></span>]], {
-		["\"Server\""] = "\"([^\"]+)\"",
-		[">Server<"] = ">[^<]+<",
-		["\"/Quenty/NevermoreEngine/tree/version2/Modules/Server\""] = "\"[^\"]+\"",
-		[" "] = "%s+"
-	})
-
-	function ParseUtils.parseContents(body, pattern)
-		assert(pattern)
-
-		if not body then
-			return EMPTY_ITERATOR
-		end
-
-		return body:gmatch(pattern)
-	end
 
 	function ParseUtils.readContentsAsync(url)
 		local body = Http.getAsync(url)
 
-		return ParseUtils.parseContents(body, CONTENTS_PATTERN)
+		return body
 	end
 
 	function ParseUtils.readEntriesAsync(url, basePath)
@@ -271,7 +255,7 @@ do
 			end
 
 			if (newName[#newName] == "Server_Packages") or (newName[#newName] == "Shared") then
-				print(newName)
+				print(newName, url)
 				table.insert(entries, EntryUtils.create(className, name, path))
 			else
 				for _, src in pairs(newName) do
