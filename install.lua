@@ -208,6 +208,7 @@ do
 		end
 
 		for property, value in pairs(entry.properties) do
+			print(found)
 			found[property] = value
 		end
 
