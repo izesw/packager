@@ -279,6 +279,7 @@ do
 
 			for n, src in pairs(newName) do
 				if isAble_2(n, src) or isAble(n, src) then
+					print(src)
 					table.insert(entries, EntryUtils.create(className, name, path))
 					break
 				end
