@@ -267,7 +267,7 @@ do
 			print(#newName)
 
 			local function isAble(num, src)
-				if (num == #newName and src == "Server") or (num == #newName and src == "Shared") then
+				if (num == 8 and src == "Server") or (num == 8 and src == "Shared") then
 					print(num)
 					return true
 				end
