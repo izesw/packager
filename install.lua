@@ -266,7 +266,6 @@ do
 
 			local function isAble(num, src)
 				if (num == #newName and src == "Server") or (num == #newName and src == "Shared") then
-					
 					return true
 				end
 			end
@@ -279,7 +278,7 @@ do
 
 			for n, src in pairs(newName) do
 				if isAble_2(n, src) or isAble(n, src) then
-					print(n, src, newName)
+					print(n, src, url)
 					table.insert(entries, EntryUtils.create(className, name, path))
 					break
 				end
