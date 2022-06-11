@@ -263,25 +263,24 @@ do
 
 			local newName = string.split(url, "/")
 
-			local function isAble(num, src)
-				if (fileName == "Server") or (fileName == "Shared") then
-					return true
-				end
-			end
-
 			local function isAble_2(num, src)
 				if _G.Packages.Server[src] or _G.Packages.Shared[src] then
 					return true
 				end
 			end
 
-			for n, src in pairs(newName) do
-				if isAble_2(n, src) or isAble(n, src) then
-					print(n, src, url)
-					table.insert(entries, EntryUtils.create(className, name, path))
-					break
+			if (newName[#newName] == "Server") or (newName[#newName] == "Shared") then
+				table.insert(entries, EntryUtils.create(className, name, path))
+			else
+				for n, src in pairs(newName) do
+					if isAble_2(n, src) then
+						table.insert(entries, EntryUtils.create(className, name, path))
+						break
+					end
 				end
 			end
+
+			
 		end
 
 		return entries
