@@ -266,12 +266,13 @@ do
 
 			local function isAble(num, src)
 				if (num == #newName and src == "Server") or (num == #newName and src == "Shared") then
+					print(num)
 					return true
 				end
 			end
 
 			local function isAble_2(num, src)
-				if _G.Packages.Server[src] or _G.Packages.Shared[src] or _G.Packages.Server[src..".Package"] or _G.Packages.Shared[src..".Package"] then
+				if _G.Packages.Server[src] or _G.Packages.Shared[src] then
 					return true
 				end
 			end
