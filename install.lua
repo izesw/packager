@@ -273,7 +273,7 @@ do
 			for n, src in pairs(newName) do
 				if _G.Packages.Server[src] or _G.Packages.Shared[src] or isAble(n, src) then
 					table.insert(entries, EntryUtils.create(className, name, path))
-					return
+					break
 				end
 			end
 		end
