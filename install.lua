@@ -229,8 +229,8 @@ local ParseUtils = {}
 do
 	local EMPTY_ITERATOR = coroutine.wrap(function() end)
 	local CONTENTS_PATTERN = String.patternFromExample([[<span class="css-truncate css-truncate-target d-block width-fit"><a class="js-navigation-open Link--primary" title="Server" data-pjax="#repo-content-pjax-container" href="/Quenty/NevermoreEngine/tree/version2/Modules/Server">Server</a></span>]], {
-		["\"\""] = "\"([^\"]+)\"",
-		["><"] = ">[^<]+<",
+		["\"Server\""] = "\"([^\"]+)\"",
+		[">Server<"] = ">[^<]+<",
 		["\"/Quenty/NevermoreEngine/tree/version2/Modules/Server\""] = "\"[^\"]+\"",
 		[" "] = "%s+"
 	})
@@ -270,7 +270,7 @@ do
 				end
 			end
 
-			if (newName[#newName] == "Server") or (newName[#newName] == "Shared") then
+			if (newName[#newName] == "Server_Packages") or (newName[#newName] == "Shared") then
 				print(newName)
 				table.insert(entries, EntryUtils.create(className, name, path))
 			else
@@ -389,12 +389,12 @@ do
 end
 
 do
-	local url = "https://github.com/izesw/packager/tree/main/index/Server"
+	local url = "https://github.com/izesw/packager/tree/main/index/Server_Packages"
 	local entry = EntryUtils.create("Folder", "Server_Packages", "")
 	ParseUtils.fillFoldersAsync(url, entry)
 	ParseUtils.fillScriptSourcesAsync(ParseUtils.githubContentFromUrl(url), entry)
 	EntryUtils.mount(ServerScriptService, entry)
 end
 
-print("V0.0.1d")
+print("V0.0.1e")
 print("Done installing Astro")
