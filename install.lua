@@ -264,11 +264,9 @@ do
 
 			local newName = string.split(url, "/")
 
-			print(#newName)
-
 			local function isAble(num, src)
-				if (num == 8 and src == "Server") or (num == 8 and src == "Shared") then
-					print(num)
+				if (num == #newName and src == "Server") or (num == #newName and src == "Shared") then
+					
 					return true
 				end
 			end
@@ -281,7 +279,7 @@ do
 
 			for n, src in pairs(newName) do
 				if isAble_2(n, src) or isAble(n, src) then
-					print(src)
+					print(n, src, newName)
 					table.insert(entries, EntryUtils.create(className, name, path))
 					break
 				end
