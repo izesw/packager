@@ -229,8 +229,8 @@ local ParseUtils = {}
 do
 	local EMPTY_ITERATOR = coroutine.wrap(function() end)
 	local CONTENTS_PATTERN = String.patternFromExample([[<span class="css-truncate css-truncate-target d-block width-fit"><a class="js-navigation-open Link--primary" title="Server" data-pjax="#repo-content-pjax-container" href="/Quenty/NevermoreEngine/tree/version2/Modules/Server">Server</a></span>]], {
-		["\"Server\""] = "\"([^\"]+)\"",
-		[">Server<"] = ">[^<]+<",
+		["\"\""] = "\"([^\"]+)\"",
+		["><"] = ">[^<]+<",
 		["\"/Quenty/NevermoreEngine/tree/version2/Modules/Server\""] = "\"[^\"]+\"",
 		[" "] = "%s+"
 	})
@@ -271,10 +271,12 @@ do
 			end
 
 			if (newName[#newName] == "Server") or (newName[#newName] == "Shared") then
+				print(newName)
 				table.insert(entries, EntryUtils.create(className, name, path))
 			else
 				for _, src in pairs(newName) do
 					if isAble_2(src) then
+						print(url)
 						table.insert(entries, EntryUtils.create(className, name, path))
 						break
 					end
