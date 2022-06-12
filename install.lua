@@ -1,9 +1,11 @@
+warn("[ASTRO] Using Nevermore Loader! (v0.1.0a)")
+
 local HttpService = game:GetService("HttpService")
 
 local Table = {}
 do
 	local function errorOnIndex(self, index)
-		error(("Bad index %q"):format(tostring(index)), 2)
+		error(("[ASTRO] Bad index %q"):format(tostring(index)), 2)
 	end
 
 	local READ_ONLY_METATABLE = {
@@ -38,7 +40,7 @@ do
 		if response.Success then
 			return response.Body
 		else
-			warn(("%d - %q - While retrieving %q"):format(response.StatusCode, response.StatusMessage, url))
+			warn(("[ASTRO] %d - %q - While retrieving %q"):format(response.StatusCode, response.StatusMessage, url))
 			return nil
 		end
 	end
@@ -133,7 +135,7 @@ do
 		elseif entryType == ENTRY_TYPES.Folder then
 			return name
 		else
-			error("Unknown entryType")
+			error("[ASTRO] Unknown entryType")
 		end
 	end
 
@@ -175,7 +177,7 @@ do
 				if not found then
 					found = item
 				else
-					warn(("[EntryUtils.mount] - Duplicate of %q")
+					warn(("[ASTRO] Duplicate of %q")
 						:format(item:GetFullName()))
 					addChildren(item)
 					item:Remove()
@@ -184,7 +186,7 @@ do
 		end
 
 		if found and (not found:IsA(entry.className)) then
-			warn(("[EntryUtils.mount] - Changing %q from type %q to type %q")
+			warn(("[ASTRO] Changing %q from type %q to type %q")
 						:format(found:GetFullName(), found.ClassName, entry.className))
 			addChildren(found)
 			found:Remove()
@@ -288,7 +290,7 @@ do
 				if not index then
 					index = childIndex
 				else
-					warn("[ParseUtils.replaceEntryWithTopLevelChild] - Multiple top level children named 'init'. Using first.")
+					warn("[ASTRO] Multiple top level children named 'init'. Using first.")
 				end
 			end
 		end
@@ -314,12 +316,12 @@ do
 	function ParseUtils.fillScriptSourcesAsync(baseUrl, entry)
 		if ParseUtils.shouldRetrieveSource(entry) then
 			local url = baseUrl .. entry.canonicalPath
-			print(("Retrieving source %q"):format(url))
+			print(("[ASTRO] Loading... %q"):format(url))
 
 			local body = Http.getAsync(url)
 
 			if not body then
-				warn(("[ParseUtils.fillScriptSourcesAsync] - Failed to find source of %q at %q")
+				warn(("[ASTRO] Failed to find source of %q at %q")
 					:format(entry.name, url))
 				return
 			end
@@ -334,7 +336,7 @@ do
 	end
 
 	function ParseUtils.fillFoldersAsync(url, entry)
-		print(("Retrieving %q"):format(url))
+		print(("[ASTRO] Loading... %q"):format(url))
 
 		entry.children = ParseUtils.readEntriesAsync(url, entry.canonicalPath)
 
@@ -352,7 +354,7 @@ do
 
 	function ParseUtils.githubContentFromUrl(url)
 		if not String.startsWith(url, "https://github.com/") then
-			error("Not a github URL")
+			error("[ASTRO] Not a github URL")
 			return
 		end
 
@@ -385,5 +387,4 @@ do
 	EntryUtils.mount(ServerScriptService, entry)
 end
 
-print("V0.0.1")
-print("Done installing Astro")
+warn("[ASTRO] Loaded!")
