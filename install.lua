@@ -262,7 +262,6 @@ do
 			end
 
 			if (newName[#newName] == "Server_Packages") or (newName[#newName] == "Shared") then
-				print(newName, url)
 				table.insert(entries, EntryUtils.create(className, name, path))
 			else
 				for _, src in pairs(newName) do
@@ -316,7 +315,6 @@ do
 	function ParseUtils.fillScriptSourcesAsync(baseUrl, entry)
 		if ParseUtils.shouldRetrieveSource(entry) then
 			local url = baseUrl .. entry.canonicalPath
-			print(("[ASTRO] Loading... %q"):format(url))
 
 			local body = Http.getAsync(url)
 
@@ -336,7 +334,6 @@ do
 	end
 
 	function ParseUtils.fillFoldersAsync(url, entry)
-		print(("[ASTRO] Loading... %q"):format(url))
 
 		entry.children = ParseUtils.readEntriesAsync(url, entry.canonicalPath)
 
