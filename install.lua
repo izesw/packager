@@ -1,4 +1,4 @@
-warn("[ASTRO] Using Nevermore Loader! (v0.1.0a)")
+warn("[ASTRO] [BOOT] (v0.1.0a)")
 
 local HttpService = game:GetService("HttpService")
 
