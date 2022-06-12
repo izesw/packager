@@ -1,14 +1,3 @@
--- Nevermore installer script
---
--- Reads Github html and then reifies the structure into Roblox instances.
--- Makes assumptions based upon the name of the files as-to what type it is.
--- Generally follows the rojo standard format for client/server.
---
--- @script Install.lua
--- @author Quenty
-
--- luacheck: no max line length
-
 local HttpService = game:GetService("HttpService")
 
 local Table = {}
