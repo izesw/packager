@@ -228,10 +228,10 @@ end
 local ParseUtils = {}
 do
 	local EMPTY_ITERATOR = coroutine.wrap(function() end)
-	local CONTENTS_PATTERN = String.patternFromExample([[<span class="css-truncate css-truncate-target d-block width-fit"><a class="js-navigation-open Link--primary" title="Server" data-pjax="#repo-content-pjax-container" href="/izesw/packager/tree/main/index">index</a></span>]], {
-		["\"index\""] = "\"([^\"]+)\"",
-		[">index<"] = ">[^<]+<",
-		["\"/izesw/packager/tree/main/index\""] = "\"[^\"]+\"",
+	local CONTENTS_PATTERN = String.patternFromExample([[<span class="css-truncate css-truncate-target d-block width-fit"><a class="js-navigation-open Link--primary" title="Server" data-pjax="#repo-content-pjax-container" href="/izesw/packager/tree/main/index/Server_Packages">Server_Packages</a></span>]], {
+		["\"Server_Packages\""] = "\"([^\"]+)\"",
+		[">Server_Packages<"] = ">[^<]+<",
+		["\"/izesw/packager/tree/main/index/Server_Packages\""] = "\"[^\"]+\"",
 		[" "] = "%s+"
 	})
 
@@ -396,5 +396,5 @@ do
 	EntryUtils.mount(ServerScriptService, entry)
 end
 
-print("V0.0.1e")
+print("V0.0.1f")
 print("Done installing Astro")
