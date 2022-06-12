@@ -396,5 +396,5 @@ do
 	EntryUtils.mount(ServerScriptService, entry)
 end
 
-print("V0.0.1f")
+print("V0.0.1")
 print("Done installing Astro")
